@@ -56,13 +56,14 @@ fn main() -> io::Result<()> {
 
     let normalized_program_name = normalize_program_name(&args.program_name);
     let random_program_id = Keypair::new().pubkey().to_string();
-    replace_template_name(&target_dir, "__PROGRAM_NAME__", &args.program_name)?;
     replace_template_name(
         &target_dir,
-        "__PROGRAM_NAME_NORMALIZED__",
-        &normalized_program_name,
+        vec![
+            ("__PROGRAM_NAME__", &args.program_name),
+            ("__PROGRAM_NAME_NORMALIZED__", &normalized_program_name),
+            ("__PROGRAM_ID__", &random_program_id),
+        ],
     )?;
-    replace_template_name(&target_dir, "__PROGRAM_ID__", &random_program_id)?;
 
     println!("Initializing new Git repository");
     init_git(&target_dir)?;
@@ -93,16 +94,17 @@ fn copy_dir(dir: &Dir, dest: &Path) -> io::Result<()> {
     Ok(())
 }
 
-/// Replace occurrences of `old` with `new` in all files under `dir`.
-fn replace_template_name(dir: &Path, old: &str, new: &str) -> io::Result<()> {
-    let re = Regex::new(old).unwrap();
-
+/// Replace occurrences of old values with new values in all files under `dir`.
+fn replace_template_name(dir: &Path, replacements: Vec<(&str, &str)>) -> io::Result<()> {
     for entry in WalkDir::new(dir).into_iter().filter_map(Result::ok) {
         if entry.file_type().is_file() {
-            let path = entry.path();
-            let content = fs::read_to_string(path)?;
-            let new_content = re.replace_all(&content, new).to_string();
-            fs::write(path, new_content)?;
+            for (old, new) in &replacements {
+                let re = Regex::new(&old).unwrap();
+                let path = entry.path();
+                let content = fs::read_to_string(path)?;
+                let new_content = re.replace_all(&content, *new).to_string();
+                fs::write(path, new_content)?;
+            }
         }
     }
 
