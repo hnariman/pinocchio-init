@@ -1,10 +1,14 @@
 # __PROGRAM_NAME__
 
-This is a simple Solana program to log a "Hello, Solana!" message.
+This is a Solana program to create, increment, decrement, and delete an on-chain counter.
 
 ## Project Structure
 
-- **`src/lib.rs`**: Contains the main program logic, including the entrypoint and the `process_instruction` function.
+- **`src/entrypoint.rs`**: Contains the program entrypoint.
+- **`src/instruction`**: Contains the program instructions and instruction handlers.
+- **`src/state`**: Contains the program state.
+- **`src/constants.rs`**: Contains constant values.
+- **`src/error.rs`**: Contains custom errors.
 - **`tests/tests.rs`**: Includes integration tests for the program using the `mollusk_svm` framework.
 
 ## Prerequisites
@@ -12,6 +16,7 @@ This is a simple Solana program to log a "Hello, Solana!" message.
 - Rust and Cargo
 - Solana CLI tools
 - Pinocchio
+- bytemuck (for data serialization/deserialization)
 - Mollusk (for testing)
 
 ## Build the Program
