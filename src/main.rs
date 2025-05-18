@@ -1,6 +1,8 @@
 use clap::{Parser, ValueEnum};
 use include_dir::{Dir, include_dir};
 use regex::Regex;
+use solana_sdk::signature::Keypair;
+use solana_sdk::signer::Signer;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
@@ -53,12 +55,14 @@ fn main() -> io::Result<()> {
     copy_dir(template_root, &target_dir)?;
 
     let normalized_program_name = normalize_program_name(&args.program_name);
+    let random_program_id = Keypair::new().pubkey().to_string();
     replace_template_name(&target_dir, "__PROGRAM_NAME__", &args.program_name)?;
     replace_template_name(
         &target_dir,
         "__PROGRAM_NAME_NORMALIZED__",
         &normalized_program_name,
     )?;
+    replace_template_name(&target_dir, "__PROGRAM_ID__", &random_program_id)?;
 
     println!("Initializing new Git repository");
     init_git(&target_dir)?;
