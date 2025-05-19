@@ -1,6 +1,6 @@
 # pinocchio-init
 
-`pinocchio-init` is a command-line tool to bootstrap a new Solana program using Pinocchio.
+`pinocchio-init` is a CLI tool for initializing new Solana programs using Pinocchio.
 
 ## Templates
 
@@ -15,7 +15,7 @@ Select the template that suits your use case and customize it as needed.
 ## Usage
 
 ```sh
-pinocchio-init <PROGRAM_NAME> [--template basic|full]
+pinocchio-init <PROGRAM_NAME> [--template=basic|full]
 ```
 
 - `<PROGRAM_NAME>`: The name of your new program.

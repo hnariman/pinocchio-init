@@ -9,9 +9,10 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
 
-/// Embed the entire templates directory
+/// Embed the templates directory.
 static TEMPLATE_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/templates");
 
+/// Command-line arguments for the program.
 #[derive(Parser)]
 #[command(name = "pinocchio-init")]
 #[command(about = "Initialize a new Pinocchio program.")]
@@ -24,6 +25,7 @@ struct Args {
     pub template: TemplateKind,
 }
 
+/// Enum for template kinds.
 #[derive(Debug, Clone, ValueEnum)]
 enum TemplateKind {
     Basic,

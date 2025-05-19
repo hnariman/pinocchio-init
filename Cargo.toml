@@ -1,7 +1,12 @@
 [package]
 name = "pinocchio-init"
+description = "A CLI tool for initializing new Solana programs using Pinocchio."
+homepage = "https://github.com/bidhan-a/pinocchio-init"
+repository = "https://github.com/bidhan-a/pinocchio-init"
+readme = "README.md"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
 clap = { version = "4.5.38", features = ["derive"] }
