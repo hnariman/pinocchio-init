@@ -67,6 +67,8 @@ fn main() -> io::Result<()> {
         ],
     )?;
 
+    rename_template_cargo_toml(&target_dir)?;
+
     println!("Initializing new Git repository");
     init_git(&target_dir)?;
 
@@ -110,6 +112,16 @@ fn replace_template_name(dir: &Path, replacements: Vec<(&str, &str)>) -> io::Res
         }
     }
 
+    Ok(())
+}
+
+/// Rename the template `Cargo.toml.template` to `Cargo.toml`.
+fn rename_template_cargo_toml(dir: &Path) -> io::Result<()> {
+    let template_path = dir.join("template.Cargo.toml");
+    let target_path = dir.join("Cargo.toml");
+    if template_path.exists() {
+        fs::rename(template_path, target_path)?;
+    }
     Ok(())
 }
 
