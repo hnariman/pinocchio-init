@@ -12,6 +12,14 @@ There are two templates available:
 
 Select the template that suits your use case and customize it as needed.
 
+## Installation
+
+You can install `pinocchio-init` using Cargo:
+
+```sh
+cargo install pinocchio-init
+```
+
 ## Usage
 
 ```sh
