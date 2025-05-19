@@ -1,10 +1,12 @@
 [package]
 name = "pinocchio-init"
+version = "0.1.0"
 description = "A CLI tool for initializing new Solana programs using Pinocchio."
 homepage = "https://github.com/bidhan-a/pinocchio-init"
 repository = "https://github.com/bidhan-a/pinocchio-init"
 readme = "README.md"
-version = "0.1.0"
+keywords = ["solana", "cli", "program", "pinocchio"]
+categories = ["command-line-utilities"]
 edition = "2024"
 license = "MIT"
 
