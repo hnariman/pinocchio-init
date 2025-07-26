@@ -3,7 +3,7 @@ use alloc::vec;
 
 use __PROGRAM_NAME_NORMALIZED__::ID;
 use mollusk_svm::Mollusk;
-use mollusk_svm::result::{Check, ProgramResult};
+use mollusk_svm::result::Check;
 use solana_sdk::instruction::Instruction;
 use solana_sdk::pubkey::Pubkey;
 
